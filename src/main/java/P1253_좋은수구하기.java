@@ -16,13 +16,16 @@ public class P1253_좋은수구하기 {
         }
 
         Arrays.sort(A);
-        for (int cur = N - 1; cur > 1; cur--) {
-            int i = 0, j = cur - 1;
+        for (int cur = 0; cur < N; cur++) {
+            int i = 0, j = N - 1;
             while (i < j) {
                 long find = A[cur];
                 if (A[i] + A[j] == find) {
-                    niceNum++;
-                    break;
+                    if (i != cur && j != cur) {
+                        niceNum++;
+                        break;
+                    } else if (i == cur) i++;
+                    else if (j == cur) j--;
                 } else if (A[i] + A[j] < find)
                     i++;
                 else
@@ -30,5 +33,6 @@ public class P1253_좋은수구하기 {
             }
         }
         System.out.println(niceNum);
+        br.close();
     }
 }
